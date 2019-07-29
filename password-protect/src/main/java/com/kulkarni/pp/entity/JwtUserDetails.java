@@ -2,11 +2,12 @@ package com.kulkarni.pp.entity;
 
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -20,12 +21,11 @@ public class JwtUserDetails implements UserDetails {
 	private static final long serialVersionUID = 5155720064139820502L;
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private  Long id;
 	private  String username;
 	private  String password;
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name="id")
+	@OneToMany(mappedBy = "jwtUserDetails",cascade = CascadeType.ALL)
 	private Collection<Role> roles;
 
 	public JwtUserDetails() {

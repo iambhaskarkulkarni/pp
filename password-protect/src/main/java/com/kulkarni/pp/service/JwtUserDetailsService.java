@@ -9,5 +9,5 @@ public interface JwtUserDetailsService {
 	public JwtUserDetails addJwtUserDetails(String username, String password, String role);
 	
 	public UserDetails loadUserByUsername(String username);
-
+	
 }

@@ -4,7 +4,10 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import org.springframework.security.core.GrantedAuthority;
 
@@ -14,13 +17,16 @@ public class Role implements GrantedAuthority {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long Id;
 	private String authority;
 	private Date createdOn;
 	private String currentState;
 	private Short scope;
 	private Short Level;
+	@ManyToOne
+	@JoinColumn(name = "jwt_user_id",referencedColumnName = "id")
+	private JwtUserDetails jwtUserDetails;
 
 	public Long getId() {
 		return Id;
@@ -68,6 +74,14 @@ public class Role implements GrantedAuthority {
 
 	public void setLevel(Short level) {
 		Level = level;
+	}
+
+	public JwtUserDetails getJwtUserDetails() {
+		return jwtUserDetails;
+	}
+
+	public void setJwtUserDetails(JwtUserDetails jwtUserDetails) {
+		this.jwtUserDetails = jwtUserDetails;
 	}
 
 	@Override

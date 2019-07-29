@@ -1,0 +1,16 @@
+div{
+    text-align: center;
+    align-content: center;
+    box-align:center;
+  }
+  .card {
+    margin: 0 auto; /* Added */
+    float: none; /* Added */
+    margin-bottom: 10px; /* Added */
+    margin-top: 50px;
+    background-color:rgb(224, 215, 202)
+}
+
+  .card-footer{
+    background-color: azure;
+  }
